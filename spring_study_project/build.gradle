@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'study'
+version '0.0.1-SNAPSHOT'
+sourceCompatibility = '12'
+
+
+repositories {
+    mavenCentral()
+}
+test{
+    useJUnitPlatform()
+}
+
+ext{
+    springVersion ='5.2.5.RELEASE'
+}
+
+dependencies {
+    implementation 'javax.servlet:javax.servlet-api:4.0.1'                           //서블릿 api
+
+    compileOnly 'org.projectlombok:lombok:1.18.16'                                   //롬복
+    annotationProcessor 'org.projectlombok:lombok:1.18.16'                           //롬복
+    testCompileOnly 'org.projectlombok:lombok:1.18.16'                               //롬복
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.16'                       //롬복
+
+    implementation 'org.codehaus.groovy:groovy:3.0.3'                                //spring
+    implementation "org.springframework:spring-jdbc:${springVersion}"                //spring
+    implementation "org.springframework:spring-core:${springVersion}"                //spring
+    implementation "org.springframework:spring-context:${springVersion}"             //spring
+
+    implementation "org.springframework:spring-webmvc:${springVersion}"              //spring mvc 모델
+
+    runtimeOnly 'mysql:mysql-connector-java:8.0.19'                                  //mysql connector
+    testImplementation 'org.hamcrest:hamcrest:2.1'                                   //test 라이브러리
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'                   //test 라이브러리
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.5.2")                  //test 라이브러리
+
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.0'              //contentNegotiatiingView Resolver 라이브러리
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.11.0'  //contentNegotiatiingView Resolver 라이브러리
+
+    implementation 'org.springframework.data:spring-data-jpa:2.3.1.RELEASE'          //spring data jpa 라이브러리
+    implementation 'org.hibernate:hibernate-entitymanager:5.4.17.Final'              //jpa 라이브러리
+
+}
