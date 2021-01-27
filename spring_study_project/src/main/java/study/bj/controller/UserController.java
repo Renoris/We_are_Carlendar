@@ -89,16 +89,32 @@ public class UserController {
     }
 
 
-    @RequestMapping(path="/upload", method = RequestMethod.GET)
-    public void upload(){
+//    @RequestMapping(path="/upload", method = RequestMethod.GET)
+//    public void upload(){
+//
+//    }
+//
+//    @RequestMapping(path="/upload",method = RequestMethod.POST)
+//    public ModelAndView upload(@RequestParam("file")MultipartFile file, HttpServletRequest request) throws IOException {
+//        uploadService.upload(file,request);
+//        //----------------------파일 저장끝
+//        ModelAndView modelAndView=new ModelAndView();
+//        modelAndView.addObject("url","/images"+file.getOriginalFilename());
+//        return modelAndView;
+//    }
 
+    @RequestMapping(path="/upload2", method = RequestMethod.GET)
+    public ModelAndView upload2(){
+        ModelAndView modelAndView=new ModelAndView("upload");
+        modelAndView.addObject("url","");//null을 넣으면 안된다 시부레
+        return modelAndView;
     }
 
-    @RequestMapping(path="/upload",method = RequestMethod.POST)
-    public ModelAndView upload(@RequestParam("file")MultipartFile file, HttpServletRequest request) throws IOException {
+    @RequestMapping(path="/upload2",method = RequestMethod.POST)
+    public ModelAndView upload2(@RequestParam("file")MultipartFile file, HttpServletRequest request) throws IOException {
         uploadService.upload(file,request);
         //----------------------파일 저장끝
-        ModelAndView modelAndView=new ModelAndView();
+        ModelAndView modelAndView=new ModelAndView("upload");
         modelAndView.addObject("url","/images"+file.getOriginalFilename());
         return modelAndView;
     }

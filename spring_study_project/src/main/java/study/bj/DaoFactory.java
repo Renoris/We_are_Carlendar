@@ -60,21 +60,21 @@ public class DaoFactory {
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         return transactionManager;
     }
-    //freemarker bean
-    @Bean
-    public ViewResolver viewResolver(){
 
-        FreeMarkerViewResolver resolver=new FreeMarkerViewResolver();
-        resolver.setCache(false);
-        resolver.setPrefix("");
-        resolver.setSuffix(".ftl");
-        return resolver;
-    }
+//    //freemarker bean
+//    @Bean
+//    public ViewResolver viewResolver(){
+//        FreeMarkerViewResolver resolver=new FreeMarkerViewResolver();
+//        resolver.setCache(false);
+//        resolver.setPrefix("");
+//        resolver.setSuffix(".ftl");
+//        return resolver;
+//    }
 
     @Bean
     public FreeMarkerConfigurer freeMarkerConfigurer(){
         FreeMarkerConfigurer freeMarkerConfigurer=new FreeMarkerConfigurer();
-        freeMarkerConfigurer.setTemplateLoaderPath("/WEB-INF/views/freemarker/");
+        freeMarkerConfigurer.setTemplateLoaderPath("/WEB-INF/views/freemarker");
         freeMarkerConfigurer.setDefaultEncoding("UTF-8");
         return freeMarkerConfigurer;
     }

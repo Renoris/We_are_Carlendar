@@ -27,7 +27,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/images/**")
-                .addResourceLocations(("/WEB-INF/static"));
+                .addResourceLocations("/WEB-INF/static/");
     }
 
     @Override
@@ -40,6 +40,7 @@ public class WebConfig implements WebMvcConfigurer {
 //        registry.jsp().prefix("/WEB-INF/views/jsp/").suffix(".jsp");
 //        registry.enableContentNegotiation(new MappingJackson2JsonView());
 //        registry.enableContentNegotiation(new MappingJackson2XmlView());
+        registry.freeMarker().suffix(".ftl");
 
     }
 }
