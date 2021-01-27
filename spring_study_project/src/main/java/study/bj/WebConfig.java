@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import org.springframework.web.servlet.view.xml.MappingJackson2XmlView;
 
@@ -37,9 +38,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
 //        registry.jsp().prefix("/WEB-INF/views/jsp/").suffix(".jsp");
-        registry.freeMarker().prefix("/WEB-INF/views/freemarker/").suffix(".ftl");
-        registry.enableContentNegotiation(new MappingJackson2JsonView());
-        registry.enableContentNegotiation(new MappingJackson2XmlView());
+//        registry.enableContentNegotiation(new MappingJackson2JsonView());
+//        registry.enableContentNegotiation(new MappingJackson2XmlView());
 
     }
 }

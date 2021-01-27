@@ -11,6 +11,9 @@ import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -57,7 +60,24 @@ public class DaoFactory {
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         return transactionManager;
     }
+    //freemarker bean
+    @Bean
+    public ViewResolver viewResolver(){
 
+        FreeMarkerViewResolver resolver=new FreeMarkerViewResolver();
+        resolver.setCache(false);
+        resolver.setPrefix("");
+        resolver.setSuffix(".ftl");
+        return resolver;
+    }
+
+    @Bean
+    public FreeMarkerConfigurer freeMarkerConfigurer(){
+        FreeMarkerConfigurer freeMarkerConfigurer=new FreeMarkerConfigurer();
+        freeMarkerConfigurer.setTemplateLoaderPath("/WEB-INF/views/freemarker/");
+        freeMarkerConfigurer.setDefaultEncoding("UTF-8");
+        return freeMarkerConfigurer;
+    }
     @Bean
     public JdbcTemplate jdbcContext() {
         return new JdbcTemplate(dataSource());
