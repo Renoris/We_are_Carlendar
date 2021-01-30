@@ -5,31 +5,24 @@ import org.springframework.stereotype.Service;
 import study.bj.dao.UserDao;
 import study.bj.data.User;
 
-import java.util.ArrayList;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
+
     private final UserDao userDao;
 
     @Override
-    public User getUser(Integer id) {
-        return userDao.findById(id).get();
-    }
-
-    @Override
-    public User[] getAllUser() {
-        Object[] objects=userDao.findAll().toArray();
-        return (User[]) objects;
-    }
-
-    @Override
-    public void insertUpdateUser(User user) {
-        userDao.save(user);
-    }
-
-    @Override
-    public void deleteUser(Integer id) {
-        userDao.deleteById(id);
+    public boolean logincheck(HttpServletRequest request, HttpSession session) {
+        User findUser = userDao.findByName(request.getParameter("username"));
+        if (findUser == null || !findUser.getPassword().equals(request.getParameter("password"))) {
+            return false;
+        } else {
+            User sessionUser = User.builder().id(findUser.getId()).name(findUser.getName()).build();
+            session.setAttribute("userinfo", sessionUser);
+            return true;
+        }
     }
 }

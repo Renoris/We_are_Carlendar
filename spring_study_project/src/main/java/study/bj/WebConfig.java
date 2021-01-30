@@ -10,6 +10,7 @@ import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import org.springframework.web.servlet.view.xml.MappingJackson2XmlView;
+import study.bj.intercepter.UserIntercepter;
 
 import java.util.List;
 
@@ -25,6 +26,11 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new UserIntercepter()).addPathPatterns("/**");
+    }
+
+    @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/images/**")
                 .addResourceLocations("/WEB-INF/static/");
@@ -35,12 +41,11 @@ public class WebConfig implements WebMvcConfigurer {
         converters.add(new MappingJackson2HttpMessageConverter());
     }
 
-    @Override
-    public void configureViewResolvers(ViewResolverRegistry registry) {
-//        registry.jsp().prefix("/WEB-INF/views/jsp/").suffix(".jsp");
-//        registry.enableContentNegotiation(new MappingJackson2JsonView());
-//        registry.enableContentNegotiation(new MappingJackson2XmlView());
-        registry.freeMarker().suffix(".ftl");
-
-    }
+//    @Override
+//    public void configureViewResolvers(ViewResolverRegistry registry) {
+////        registry.jsp().prefix("/WEB-INF/views/jsp/").suffix(".jsp");
+////        registry.enableContentNegotiation(new MappingJackson2JsonView());
+////        registry.enableContentNegotiation(new MappingJackson2XmlView());
+////        registry.freeMarker().suffix(".ftl");
+//    }
 }
