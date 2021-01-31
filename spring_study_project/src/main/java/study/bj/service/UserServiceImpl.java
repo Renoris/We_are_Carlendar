@@ -12,6 +12,11 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
+    @Override
+    public User getUserByName(String name) {
+        return userDao.findByName(name);
+    }
+
     private final UserDao userDao;
 
     @Override

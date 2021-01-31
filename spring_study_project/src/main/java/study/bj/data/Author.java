@@ -18,10 +18,10 @@ public class Author {
     private Integer id;
 
     @Column
-    private Integer userid;
+    private String username;
 
     @Column
-    private Integer target;
+    private String target;
 
     @Column
     private Integer allow;

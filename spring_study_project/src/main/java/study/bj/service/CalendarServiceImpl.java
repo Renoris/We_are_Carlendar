@@ -7,6 +7,7 @@ import study.bj.data.DayCal;
 import study.bj.data.PreCal;
 import study.bj.data.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -46,5 +47,13 @@ public class CalendarServiceImpl implements CalendarService{
             dayCal.setId(preCal.getId());
         }
         dayCalDao.save(dayCal);
+    }
+
+    public List<DayCal> viewCalendarOther(List<String> lists){
+        List<DayCal> otherlists=new ArrayList<>();
+        for(String name:lists){
+            otherlists.addAll(dayCalDao.findAllByName(name));
+        }
+        return otherlists;
     }
 }

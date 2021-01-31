@@ -13,4 +13,5 @@ public interface CalendarService {
 
     public void deleteCalendar(Integer id, Integer userid);
 
+    public List<DayCal> viewCalendarOther( List<String> lists);
 }

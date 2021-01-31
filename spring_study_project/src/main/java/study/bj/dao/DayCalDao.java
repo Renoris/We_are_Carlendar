@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface DayCalDao extends JpaRepository<DayCal, Integer> {
     public List<DayCal> findAllByUserid(Integer id);
+    public List<DayCal> findAllByName(String name);
 }

@@ -7,5 +7,9 @@ import study.bj.data.Author;
 import java.util.List;
 
 public interface AuthorDao extends JpaRepository<Author, Integer> {
-    public List<Author> findByAllow(Integer id);
+    public List<Author> findALLByAllow(Integer id);
+
+    public List<Author> findALLByAllowAndTarget(Integer allow, String target);
+
+    public Author findByUsernameAndTarget(String username,String target);
 }
