@@ -25,7 +25,7 @@ public class LoginController {
     private UserService userService;
 
     @GetMapping(path = "/")
-    public void fuckup(HttpServletResponse response,HttpSession session) throws IOException {
+    public void goLogin(HttpServletResponse response,HttpSession session) throws IOException {
         if(session.getAttribute("userinfo")!=null){
             response.sendRedirect("/main");
         }else{
@@ -55,12 +55,6 @@ public class LoginController {
             response.sendRedirect("/main");
             return modelAndView;
         }
-    }
-
-    @GetMapping(path = "/main")
-    public ModelAndView main(){
-        ModelAndView modelAndView=new ModelAndView("main");
-        return modelAndView;
     }
 
 }

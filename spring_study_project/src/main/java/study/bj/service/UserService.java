@@ -10,5 +10,7 @@ import java.net.http.HttpRequest;
 import java.util.ArrayList;
 
 public interface UserService {
+
+    public User getUserById(Integer id);
     public boolean logincheck(HttpServletRequest request, HttpSession session);
 }
