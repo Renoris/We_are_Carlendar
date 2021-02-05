@@ -10,11 +10,11 @@ public interface AuthorService {
 
     public List<Author> getAllowWaitList(String name);
 
-    public String goAllow(User my,User target);
+    public String goAllow(User my, User target);
 
-    public String allowOk(User my,User target);
+    public String allowOk(User my, User target);
 
     public List<String> getAllowOkNameList(String name);
 
-    public String deleteAllow(User my,User target);
+    public String deleteAllow(User my, User target);
 }

@@ -4,11 +4,9 @@ package study.bj.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-import study.bj.dao.UserDao;
-import study.bj.data.User;
 import study.bj.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,33 +23,33 @@ public class LoginController {
     private UserService userService;
 
     @GetMapping(path = "/")
-    public void goLogin(HttpServletResponse response,HttpSession session) throws IOException {
-        if(session.getAttribute("userinfo")!=null){
+    public void goLogin(HttpServletResponse response, HttpSession session) throws IOException {
+        if (session.getAttribute("userinfo") != null) {
             response.sendRedirect("/main");
-        }else{
+        } else {
             response.sendRedirect("/login");
         }
     }
 
 
     @GetMapping(path = "/login")
-    public ModelAndView login(HttpServletResponse response,HttpSession session) throws IOException {
-        if(session.getAttribute("userinfo")!=null){
+    public ModelAndView login(HttpServletResponse response, HttpSession session) throws IOException {
+        if (session.getAttribute("userinfo") != null) {
             response.sendRedirect("/main");
         }
-        ModelAndView modelAndView=new ModelAndView("login");
-        modelAndView.addObject("msg","");
+        ModelAndView modelAndView = new ModelAndView("login");
+        modelAndView.addObject("msg", "");
         return modelAndView;
     }
 
-    @PostMapping(path ="/login")
+    @PostMapping(path = "/login")
     public ModelAndView login(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException {
-        if(!userService.logincheck(request,session)){
-            ModelAndView modelAndView=new ModelAndView("login");
-            modelAndView.addObject("msg","잘못된 입력값 입니다");
+        if (!userService.logincheck(request, session)) {
+            ModelAndView modelAndView = new ModelAndView("login");
+            modelAndView.addObject("msg", "잘못된 입력값 입니다");
             return modelAndView;
-        }else{
-            ModelAndView modelAndView=new ModelAndView("main");
+        } else {
+            ModelAndView modelAndView = new ModelAndView("main");
             response.sendRedirect("/main");
             return modelAndView;
         }

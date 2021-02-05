@@ -13,7 +13,6 @@ import study.bj.data.PreCal;
 import study.bj.data.User;
 import study.bj.service.AuthorService;
 import study.bj.service.CalendarService;
-import study.bj.service.UserService;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -32,38 +31,38 @@ public class MainController {
 
     @PostMapping("/mycalendar")
     public void saveCalendar(PreCal precal, HttpServletResponse response, HttpSession session) throws IOException {
-        User user=(User)session.getAttribute("userinfo");
+        User user = (User) session.getAttribute("userinfo");
         calendarService.insertUpdateCalendar(precal, user);
         response.sendRedirect("/main");
     }
 
     @GetMapping(path = "/main")
-    public ModelAndView main(HttpSession session){
-        User user=(User)session.getAttribute("userinfo");
-        ModelAndView modelAndView=new ModelAndView("main");
+    public ModelAndView main(HttpSession session) {
+        User user = (User) session.getAttribute("userinfo");
+        ModelAndView modelAndView = new ModelAndView("main");
 
-        List<String> allowNameList=authorService.getAllowOkNameList(user.getName());
-        List<DayCal> myCalList=calendarService.viewCalendar(user.getId());
-        List<Author> waitAllowList=authorService.getAllowWaitList(user.getName());
-        List<DayCal> otherCalList=calendarService.viewCalendarOther(allowNameList);
+        List<String> allowNameList = authorService.getAllowOkNameList(user.getName());
+        List<DayCal> myCalList = calendarService.viewCalendar(user.getId());
+        List<Author> waitAllowList = authorService.getAllowWaitList(user.getName());
+        List<DayCal> otherCalList = calendarService.viewCalendarOther(allowNameList);
 
-        modelAndView.addObject("calendarlist",myCalList);
-        modelAndView.addObject("waitallowlist",waitAllowList);
-        modelAndView.addObject("othercallist",otherCalList);
+        modelAndView.addObject("calendarlist", myCalList);
+        modelAndView.addObject("waitallowlist", waitAllowList);
+        modelAndView.addObject("othercallist", otherCalList);
         return modelAndView;
     }
 
     @GetMapping(path = "/deleteCal")
     public void deleteCal(@RequestParam Integer id, HttpSession session, HttpServletResponse response) throws IOException {
-        User user =(User)session.getAttribute("userinfo");
-        calendarService.deleteCalendar(id,user.getId());
+        User user = (User) session.getAttribute("userinfo");
+        calendarService.deleteCalendar(id, user.getId());
         response.sendRedirect("/main");
     }
 
 
     @GetMapping(path = "/logout")
     public void logout(HttpSession session, HttpServletResponse response) throws IOException {
-        session.setAttribute("userinfo",null);
+        session.setAttribute("userinfo", null);
         response.sendRedirect("/login");
     }
 }

@@ -27,6 +27,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean logincheck(HttpServletRequest request, HttpSession session) {
         User findUser = userDao.findByName(request.getParameter("username"));
+
         if (findUser == null || !findUser.getPassword().equals(request.getParameter("password"))) {
             return false;
         } else {
