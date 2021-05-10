@@ -8,6 +8,7 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" type="text/css" href="/resources/core/main.css"/>
         <link rel="stylesheet" type="text/css" href="/resources/daygrid/main.css"/>
+        <link rel="stylesheet" type="text/css" href="/resources/bj/main.css"/>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <!-- jQuery library -->
@@ -22,9 +23,11 @@
         <script type="text/javascript" src="/resources/core/locales/ko.js"></script>
         <script type="text/javascript">
             var isinsert=0;
+
             function closeRestMakeCal(){ //그냥 닫기
                 $("#makeCalRest").hide();
             }
+
             function openRestMakeCalInsert(){ //일정 작성시 id값 -1로하면서 모달보이기//
                 document.getElementById("idUpdateRest").value=-1;
                 closeRestViewCal();
@@ -40,6 +43,8 @@
                 isinsert=0;
                 $("#makeCalRest").show();
             }
+
+
             var datajson;
             function makeCalRest(){ //일정 작성/수정 버튼 클릭시 이벤트
                 var id=document.getElementById("idUpdateRest").value;
@@ -214,10 +219,15 @@
         <title>My Calendar</title>
     </head>
     <body>
+
+        <div class="frame">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewCal">일정정리</button>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#allowList">일정공유</button>
         <button type="button" class="btn btn-dark" onclick="logout()">로그아웃</button>
         <div id='calendar'></div>
+        </div>
+
+
         <div class="modal" id="viewCal">
             <div class="modal-dialog">
                 <div class="modal-content">

@@ -12,4 +12,6 @@ public interface UserService {
     public User getUserById(Integer id);
 
     public boolean logincheck(HttpServletRequest request, HttpSession session);
+
+    public boolean saveUser(HttpServletRequest request);
 }

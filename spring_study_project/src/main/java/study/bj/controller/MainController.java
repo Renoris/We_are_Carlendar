@@ -42,6 +42,7 @@ public class MainController {
         ModelAndView modelAndView = new ModelAndView("main");
 
         List<String> allowNameList = authorService.getAllowOkNameList(user.getName());
+        //
         List<DayCal> myCalList = calendarService.viewCalendar(user.getId());
         List<Author> waitAllowList = authorService.getAllowWaitList(user.getName());
         List<DayCal> otherCalList = calendarService.viewCalendarOther(allowNameList);

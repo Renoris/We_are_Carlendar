@@ -6,33 +6,37 @@
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Document</title>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="/resources/bj/login.css"/>
     </head>
     <body>
         <#assign msg="${msg}"/>
-        <form action="/login" method="post">
-            <table>
-                <tr>
-                    <td>
-                        <label for="username">아이디</label>
-                    </td>
-                    <td>
-                        <input type="text" name="username" hint="id" id="username">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="password">패스워드</label>
-                    </td>
-                    <td>
-                        <input type="password" name="password" hint="password" id="password">
-                    </td>
-                </tr>
-                <tr>
-                    <td><input type="submit" value="로그인"></td>
-                </tr>
-            </table>
-
-        </form>
+        <div class="sidenav">
+            <div class="login-main-text">
+                <h2>We are Calendar<br> Login Page</h2>
+                <p>로그인이 필요합니다.</p>
+            </div>
+        </div>
+        <div class="main">
+            <div class="col-md-6 col-sm-12">
+                <div class="login-form">
+                    <form action="/login" method="post">
+                        <div class="form-group">
+                            <label>ID</label>
+                            <input type="text" name="username" class="form-control" placeholder="ID">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" name="password" class="form-control" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-black">로그인</button>
+                        <a href="/registry"> <button type="button" class="btn btn-black">회원가입</button></a>
+                    </form>
+                </div>
+            </div>
+        </div>
     </body>
 
     <#if msg!="">

@@ -13,7 +13,7 @@ public class UserIntercepter implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String requestUrl = request.getRequestURL().toString();
         HttpSession session = request.getSession();
-        if(requestUrl.contains("/login")||requestUrl.contains("/images")) {
+        if(requestUrl.contains("/login")||requestUrl.contains("/images")||requestUrl.contains("/registry")) {
             return true;
         }
         else {

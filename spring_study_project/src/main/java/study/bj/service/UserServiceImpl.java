@@ -12,13 +12,11 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
+    private final UserDao userDao;
     @Override
     public User getUserByName(String name) {
         return userDao.findByName(name);
     }
-
-    private final UserDao userDao;
-
     @Override
     public User getUserById(Integer id) {
         return userDao.findById(id).get();
@@ -34,6 +32,20 @@ public class UserServiceImpl implements UserService {
             User sessionUser = User.builder().id(findUser.getId()).name(findUser.getName()).build();
             session.setAttribute("userinfo", sessionUser);
             return true;
+        }
+    }
+
+    @Override
+    public boolean saveUser(HttpServletRequest request) {
+        try{
+            User user=User.builder()
+                    .name(request.getParameter("username"))
+                    .password(request.getParameter("password"))
+                    .build();
+            userDao.save(user);
+            return true;
+        }catch (Exception e){
+            return false;
         }
     }
 }
