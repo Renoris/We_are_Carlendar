@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,7 +31,7 @@ public class MainController {
     private AuthorService authorService;
 
     @PostMapping("/mycalendar")
-    public void saveCalendar(PreCal precal, HttpServletResponse response, HttpSession session) throws IOException {
+    public void saveCalendar(@ModelAttribute PreCal precal, HttpServletResponse response, HttpSession session) throws IOException {
         User user = (User) session.getAttribute("userinfo");
         calendarService.insertUpdateCalendar(precal, user);
         response.sendRedirect("/main");
@@ -40,9 +41,8 @@ public class MainController {
     public ModelAndView main(HttpSession session) {
         User user = (User) session.getAttribute("userinfo");
         ModelAndView modelAndView = new ModelAndView("main");
-
+        System.out.println("세션에저장되있는 id는:"+user.getId());
         List<String> allowNameList = authorService.getAllowOkNameList(user.getName());
-        //
         List<DayCal> myCalList = calendarService.viewCalendar(user.getId());
         List<Author> waitAllowList = authorService.getAllowWaitList(user.getName());
         List<DayCal> otherCalList = calendarService.viewCalendarOther(allowNameList);

@@ -34,6 +34,7 @@ public class CalendarServiceImpl implements CalendarService {
 
     @Override
     public Integer insertUpdateCalendar(PreCal preCal, User user) {
+        System.out.println("service안"+ preCal.toString());
         DayCal dayCal;
         if (preCal.getId() != -1) {//update
             dayCal = dayCalDao.findById(preCal.getId()).get();
@@ -47,12 +48,12 @@ public class CalendarServiceImpl implements CalendarService {
 
         } else {//insert
             dayCal = DayCal.builder()
-                    .id(user.getId())
+                    .userid(user.getId())
                     .name(user.getName())
                     .build();
 
             insertData(dayCal, preCal);
-
+            System.out.println("저장될 데이터는:"+dayCal.toString());
             return dayCalDao.save(dayCal).getId();
         }
     }

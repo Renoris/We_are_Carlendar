@@ -18,4 +18,5 @@ public class PreCal {
     private String starttime;
     private String enddate;
     private String endtime;
+
 }
