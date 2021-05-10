@@ -1,2 +1,2 @@
-# spring_mvc2_template
-공부를위한 미리만든 mvc2 템플릿
+# We are Calendar
+calendar 라이브러리를 활용한 
