@@ -194,7 +194,7 @@
                                         id: '-1',
                                         title: '${item.title}',
                                         start: '${item.startdate}',
-                                        end: '${item.enddate}'
+                                        end: '${item.enddate}',
                                         backgroundColor : "#AAFFA3",
                                         textColor : "#484848"
                                     },

@@ -34,7 +34,6 @@ public class CalendarServiceImpl implements CalendarService {
 
     @Override
     public Integer insertUpdateCalendar(PreCal preCal, User user) {
-        System.out.println("service안"+ preCal.toString());
         DayCal dayCal;
         if (preCal.getId() != -1) {//update
             dayCal = dayCalDao.findById(preCal.getId()).get();
